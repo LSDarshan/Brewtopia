@@ -1,23 +1,73 @@
-import logo from './logo.svg';
+import Banner1 from './component/images/banner.jpg';
 import './App.css';
+import Navbar from './component/navbar';
+import Home from './component/home';
+import Drinks from './component/drink';
+import Snacks from './component/snacks';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Navbar stays common */}
+      <Navbar />
+
+      {/* Routes section */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {/* Banner only for Home */}
+              <div
+                style={{
+                  position: "relative",
+                  height: "100vh",
+                  width: "100%",
+                  backgroundImage: `url(${Banner1})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0,0,0,0.4)",
+                  }}
+                ></div>
+              </div>
+
+              {/* Home content */}
+              <div style={{ backgroundColor: "#f8f8f8", minHeight: "100vh" }}>
+                <Home />
+              </div>
+            </>
+          }
+        />
+
+        {/* Other pages without banner */}
+        <Route
+          path="/drinks"
+          element={
+            <div style={{ backgroundColor: "#f8f8f8", minHeight: "100vh" }}>
+              <Drinks />
+            </div>
+          }
+        />
+          {/* Other pages without banner */}
+        <Route
+          path="/Snacks"
+          element={
+            <div style={{ backgroundColor: "#f8f8f8", minHeight: "100vh" }}>
+              <Snacks />
+            </div>
+          }
+        />
+      </Routes>
     </div>
   );
 }
